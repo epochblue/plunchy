@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+import os
+import sys
+import argparse
+
+if __file__ == sys.argv[0]:
+    sys.path.append(os.path.dirname(__file__) + '/../plunchy')
+
+from plunchy import Plunchy
+
+COMMANDS = ['start', 'stop', 'restart', 'ls', 'list', 'status',
+            'add', 'install', 'link', 'copy', 'show', 'edit']
+
+
+def parse_args():
+    """ A simpler interface into launchctl """
+    parser = argparse.ArgumentParser(description=__doc__)
+
+    # Positional arguments
+    parser.add_argument('cmd', type=str, choices=COMMANDS, metavar="command",
+                        help='Available commands: %s' % ', '.join(COMMANDS))
+    parser.add_argument('arg', type=str, nargs='?', default=None,
+                        metavar="command_argument",
+                        help='Command-dependent, always a pattern or filename')
+
+    # Optional arguments
+    parser.add_argument('-v', '--verbose', action='store_true', default=False,
+                        dest='verbose', help='Enable verbose output')
+
+    return parser.parse_args()
+
+
+def main():
+    args = vars(parse_args())
+
+    p = Plunchy(**args)
+    try:
+        p.execute()
+    except (ValueError, NotImplementedError) as e:
+        print 'ERROR: {}'.format(e)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
