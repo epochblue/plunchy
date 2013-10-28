@@ -1,5 +1,9 @@
+# Misc. ignores
 .DS_Store
 .idea
 *.iml
+
+# Build-related ignores
 *.pyc
 *.pyo
+build/
