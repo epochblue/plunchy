@@ -145,7 +145,7 @@ class Plunchy(object):
         for d in self.__dirs():
             base = os.path.basename(self.arg)
             shutil.copy(self.arg, os.path.join(d, base))
-            print 'Installed {} into {} via symlink'.format(self.arg, d)
+            print 'Installed {} into {} via copy'.format(self.arg, d)
             break
 
     def show(self):
