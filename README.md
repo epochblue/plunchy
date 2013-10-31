@@ -23,13 +23,26 @@ available commands largely mirror `lunchy`'s:
     * stop {pattern}      Stop the launch agent matching the given pattern.
     * restart {pattern}   Restart the launch agent matching the given pattern.
     * status {pattern}    Display the status of all launch agents matching the pattern.
-    * add {file}          Add a file to the list of plunchy-managed agents
-    * install {file}      Alias for add
-    * link {file}         Symlink a file into one of the system-managed folders
-    * copy {file}         Copy a file into one of the system-managed folders
     * show {pattern}      See the launch agent with the specified pattern
     * edit {pattern}      Edit the launch agent with the specified pattern
 
+The main area where `plunchy` differs, however, is in the installation of scripts. `plunchy`
+provides the following commands for installing scripts:
+
+    * add {path}          Add the agent to `~/.plunchy` to be started/stopped manually
+    * install {path}      Alias for `add`
+    * link {path}         Install the agent into `~/Library/LaunchAgents` via symlink (\*)
+    * copy {path}         Install the agent into `~/Library/LaunchAgents` via file copy (\*)
+
+
+<small>\* Doing this means the launch agent will be loaded/started when the system boots up.</small>
+
+
+## Installation
+
+The easiest way to install `plunchy` is via `pip`:
+
+    pip install plunchy
 
 ## License
 
@@ -38,3 +51,4 @@ available commands largely mirror `lunchy`'s:
 ## Author
 
 Bill Israel - [@epochblue](https://twitter.com/epochblue) - [http://billisrael.info/](http://billisrael.info/)
+
