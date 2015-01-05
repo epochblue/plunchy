@@ -91,9 +91,6 @@ class Plunchy(object):
         self.start()
 
     def list(self):
-        if not (self.arg or self.OPTIONS['verbose']):
-            raise ValueError('list|ls [--verbose] [pattern]')
-
         print '\n'.join(self.__plists(self.arg).keys())
 
     def ls(self):
