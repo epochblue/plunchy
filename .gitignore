@@ -6,6 +6,9 @@
 # Build-related ignores
 *.pyc
 *.pyo
+*.egg-info
+.eggs/
+.tox
 build/
 dist/
 MANIFEST
