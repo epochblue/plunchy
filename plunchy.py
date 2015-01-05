@@ -91,7 +91,8 @@ class Plunchy(object):
         self.start()
 
     def list(self):
-        print '\n'.join(self.__plists(self.arg).keys())
+        services = sorted(self.__plists(self.arg).keys())
+        print('\n'.join(services))
 
     def ls(self):
         self.list()
