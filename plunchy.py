@@ -160,5 +160,8 @@ class Plunchy(object):
             f.close()
 
     def edit(self):
+        if not self.arg:
+            raise ValueError('edit [pattern]')
+
         for path in self.__plists(self.arg).values():
             call([os.getenv('VISUAL', os.getenv('EDITOR', 'vi')), path])
