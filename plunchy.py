@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 from glob import glob
 from subprocess import call, Popen, PIPE
 
@@ -98,13 +99,13 @@ class Plunchy(object):
         self.list()
 
     def status(self):
-        if not self.arg:
-            raise ValueError('status [--verbose] [pattern]')
-
         launch = Popen(['launchctl', 'list'], stdout=PIPE)
 
         if self.OPTIONS['verbose']:
-            call(['grep', '-i', '-e', self.arg], stdin=launch.stdout)
+            if self.arg:
+                call(['grep', '-i', '-e', self.arg], stdin=launch.stdout)
+            else:
+                shutil.copyfileobj(launch.stdout, sys.stdout)
         else:
             cmd = ['grep', '-i']
             for key in self.__plists(None).keys():
@@ -112,7 +113,10 @@ class Plunchy(object):
                 cmd.extend(['-e', agent])
 
             filtered = Popen(cmd, stdin=launch.stdout, stdout=PIPE)
-            call(['grep', '-i', '-e', self.arg], stdin=filtered.stdout)
+            if self.arg:
+                call(['grep', '-i', '-e', self.arg], stdin=filtered.stdout)
+            else:
+                shutil.copyfileobj(filtered.stdout, sys.stdout)
 
     def add(self):
         if not self.arg:
