@@ -1,5 +1,7 @@
 # plunchy
 
+[![Latest Version](https://pypip.in/version/plunchy/badge.svg)](https://pypi.python.org/pypi/plunchy/)
+
 `plunchy` is a simple interface into OS X's `launchctl`. It is based on the idea
 behind Mike Perham's [`lunchy`](https://github.com/mperham/lunchy) Ruby script,
 though there are a few small differences between the two:
