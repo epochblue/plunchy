@@ -34,7 +34,7 @@ def main():
     try:
         p.execute()
     except (ValueError, NotImplementedError) as e:
-        print 'ERROR: {}'.format(e)
+        sys.stderr.write('ERROR: {}\n'.format(e))
         sys.exit(1)
 
 
