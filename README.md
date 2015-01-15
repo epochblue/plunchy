@@ -50,7 +50,8 @@ The easiest way to install `plunchy` is via `pip`:
 
 `plunchy` is MIT licensed. Please see the included `LICENSE` file.
 
-## Author
+## Authors
 
 Bill Israel - [@epochblue](https://twitter.com/epochblue) - [http://billisrael.info/](http://billisrael.info/)
 
+Marc Abramowitz - [@msabramo](https://twitter.com/msabramo) - [http://marc-abramowitz.com](http://marc-abramowitz.com)

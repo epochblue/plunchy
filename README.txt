@@ -41,10 +41,15 @@ License
 
 ``plunchy`` is MIT licensed. Please see the included ``LICENSE`` file.
 
-Author
-------
+Authors
+-------
 
 Bill Israel - `@epochblue`_ - `http://billisrael.info/`_
 
 .. _@epochblue: https://twitter.com/epochblue
 .. _http://billisrael.info/: http://billisrael.info/
+
+Marc Abramowitz - `@msabramo`_ - `http://marc-abramowitz.com/`_
+
+.. _@msabramo: https://twitter.com/msabramo
+.. _http://marc-abramowitz.com/: http://marc-abramowitz.com/
