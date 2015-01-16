@@ -4,7 +4,7 @@ plunchy
 .. image:: https://img.shields.io/pypi/v/plunchy.svg
     :target: https://pypi.python.org/pypi/plunchy
 
-``plunchy`` is a simple interface into OS X's ``launchctl``. It is based on the idea behind Mike Perham's ``lunchy`` (`link <https://github.com/mperham/lunchy>`_) Ruby script, though there are a few small differences between the two:
+``plunchy`` is a simple interface into OS X's launchctl_. It is based on the idea behind Mike Perham's ``lunchy`` (`link <https://github.com/mperham/lunchy>`_) Ruby script, though there are a few small differences between the two:
 
 1. By default, ``plunchy`` does not install items into the system's ``LaunchAgents`` folders. Unless you jump through hoops, items in those folders are automatically started at system boot, defeating the purpose of managing startup and shutdown for your launch agents.
 2. Also by default, if you do want a file to be installed in a ``LaunchAgents`` folder, ``plunchy`` will symlink the file, rather than copy it. This allows you to automatically receive updates if the launch agent is updated.
@@ -49,12 +49,11 @@ License
 Authors
 -------
 
-Bill Israel - `@epochblue`_ - `http://billisrael.info/`_
+* Bill Israel - `@epochblue`_ - `http://billisrael.info/`_
+* Marc Abramowitz - `@msabramo`_ - `http://marc-abramowitz.com/`_
 
+.. _launchctl: https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/launchctl.1.html
 .. _@epochblue: https://twitter.com/epochblue
 .. _http://billisrael.info/: http://billisrael.info/
-
-Marc Abramowitz - `@msabramo`_ - `http://marc-abramowitz.com/`_
-
 .. _@msabramo: https://twitter.com/msabramo
 .. _http://marc-abramowitz.com/: http://marc-abramowitz.com/
