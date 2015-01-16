@@ -1,4 +1,12 @@
-from distutils.core import setup
+from os import path
+from setuptools import setup
+
+long_description = open(
+    path.join(
+        path.dirname(__file__),
+        'README.rst'
+    )
+).read()
 
 version ='0.1.0'
 setup(
@@ -7,10 +15,12 @@ setup(
     scripts = ['bin/plunchy'],
     version = version,
     description = "A simpler interface into OS X's launchctl",
+    long_description = long_description,
     author = 'Bill Israel',
     author_email = 'bill.israel@gmail.com',
     url = 'https://github.com/epochblue/plunchy',
     keywords = ['os x', 'launchctl'],
+    license = 'MIT',
     classifiers = [
         'Development Status :: 4 - Beta',
         'Environment :: Console',
