@@ -8,7 +8,7 @@ long_description = open(
     )
 ).read()
 
-version ='0.1.0'
+version ='1.0.0'
 setup(
     name = 'plunchy',
     py_modules = ['plunchy'],
@@ -19,10 +19,10 @@ setup(
     author = 'Bill Israel',
     author_email = 'bill.israel@gmail.com',
     url = 'https://github.com/epochblue/plunchy',
-    keywords = ['os x', 'launchctl'],
+    keywords = ['os x', 'launchctl', 'lunchy'],
     license = 'MIT',
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Environment :: MacOS X',
         'Intended Audience :: Developers',
@@ -31,6 +31,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: MacOS :: MacOS X',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Topic :: Utilities',
     ],
 )
