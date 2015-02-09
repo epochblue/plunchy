@@ -46,30 +46,23 @@ class Plunchy(object):
         return dirs
 
     def __plists(self, pattern):
-        if hasattr(self, '_plists'):
-            return self._plists
         plists = {}
 
         # Get all the paths out of the PLUNCHY_FILE first
         with open(PLUNCHY_FILE, 'r') as f:
             for f in f.read().splitlines():
                 agent = os.path.basename(f).rpartition('.')[0]
-                plists.update({agent: f})
+                if not pattern or (pattern and pattern in agent):
+                    plists.update({agent: f})
 
         # Then get all the files in the directories
         for d in self.__dirs():
             search = '{}/*.plist'.format(d)
             for f in glob(search):
                 agent = os.path.basename(f).rpartition('.')[0]
-                plists.update({agent: f})
+                if not pattern or (pattern and pattern in agent):
+                    plists.update({agent: f})
 
-        # Then filter if necessary
-        if pattern:
-            for k in plists.keys():
-                if pattern not in k:
-                    del plists[k]
-
-        self._plists = plists
         return plists
 
     def execute(self):
