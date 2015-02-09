@@ -53,13 +53,8 @@ def parse_args():
 
 def main():
     args = vars(parse_args())
-
     p = Plunchy(**args)
-    try:
-        p.execute()
-    except (ValueError, NotImplementedError) as e:
-        sys.stderr.write('ERROR: {}\n'.format(e))
-        sys.exit(1)
+    p.execute()
 
 
 if __name__ == '__main__':
