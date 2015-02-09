@@ -7,11 +7,13 @@ from plunchy import Plunchy
 
 def parse_args():
     """A simpler interface into launchctl."""
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     epilog='Command-specific help is available by running `%(prog)s command --help`')
     parser.add_argument('-v', '--verbose', action='store_true', default=False,
                         dest='verbose', help='Enable verbose output')
+    parser.add_argument('--version', action='version', version="%(prog)s 1.1.1")
 
-    subp = parser.add_subparsers(help="Available sub-commands", dest='cmd')
+    subp = parser.add_subparsers(dest='cmd', metavar='command', title='Available Commands')
 
     list_p = subp.add_parser('list', help='List all launch agents, or only ones matching the given pattern.')
     list_p.add_argument('pattern', type=str, nargs='?', help='The (optional) pattern to match')
