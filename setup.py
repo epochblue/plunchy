@@ -1,6 +1,8 @@
 from os import path
 from setuptools import setup
 
+from plunchy import VERSION
+
 long_description = open(
     path.join(
         path.dirname(__file__),
@@ -8,12 +10,15 @@ long_description = open(
     )
 ).read()
 
-version = '1.1.0'
+entry_points = {
+    'console_scripts': ['plunchy = plunchy:main']
+}
+
 setup(
     name='plunchy',
     py_modules=['plunchy'],
-    scripts=['bin/plunchy'],
-    version=version,
+    entry_points=entry_points,
+    version=VERSION,
     description="A simpler interface into OS X's launchctl",
     long_description=long_description,
     author='Bill Israel',

@@ -1,6 +1,7 @@
 import os
-import shutil
 import sys
+import shutil
+import argparse
 from glob import glob
 from subprocess import call, Popen, PIPE
 
@@ -11,6 +12,7 @@ try:
 except ImportError:
     pygments = None
 
+VERSION = '1.1.0'
 PLUNCHY_FILE = os.path.expanduser('~/.plunchy')
 DIRS = ['~/Library/LaunchAgents']
 ROOT_DIRS = [
@@ -148,3 +150,52 @@ class Plunchy(object):
     def edit(self):
         for path in self.__plists(self.pattern).values():
             call([os.getenv('VISUAL', os.getenv('EDITOR', 'vi')), path])
+
+
+def main():
+    """A simpler interface into launchctl."""
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     epilog='Command-specific help is available by running `%(prog)s command --help`')
+    parser.add_argument('-v', '--verbose', action='store_true', default=False,
+                        dest='verbose', help='Enable verbose output')
+    parser.add_argument('--version', action='version', version="%(prog)s {}".format(VERSION))
+
+    subp = parser.add_subparsers(dest='cmd', metavar='command', title='Available Commands')
+
+    list_p = subp.add_parser('list', help='List all launch agents, or only ones matching the given pattern.')
+    list_p.add_argument('pattern', type=str, nargs='?', help='The (optional) pattern to match')
+
+    ls_p = subp.add_parser('ls', help='List all launch agents, or only ones matching the given pattern.')
+    ls_p.add_argument('pattern', type=str, nargs='?', help='The (optional) pattern to match')
+
+    start_p = subp.add_parser('start', help='Start the launch agent(s) matching the given pattern.')
+    start_p.add_argument('pattern', type=str, help='The pattern to match')
+
+    stop_p = subp.add_parser('stop', help='Stop the launch agent(s) matching the given pattern.')
+    stop_p.add_argument('pattern', type=str, help='The pattern to match')
+
+    restart_p = subp.add_parser('restart', help='Restart the launch(s) agent matching the given pattern.')
+    restart_p.add_argument('pattern', type=str, help='The pattern to match')
+
+    status_p = subp.add_parser('status', help='Status the launch agent(s) matching the given pattern.')
+    status_p.add_argument('pattern', type=str, help='The pattern to match')
+
+    show_p = subp.add_parser('show', help='Show the launch agent matching(s) the given pattern.')
+    show_p.add_argument('pattern', type=str, help='The pattern to match')
+
+    edit_p = subp.add_parser('edit', help='Edit the launch agent(s) matching the given pattern.')
+    edit_p.add_argument('pattern', type=str, help='The file to edit with $VISUAL (falls back to $EDITOR)')
+
+    install_p = subp.add_parser('install', help='Add the agent to ~/.plunchy to be started/stopped manually.')
+    install_p.add_argument('path', type=str, help='The path to the launch agent to be installed.')
+
+    link_p = subp.add_parser('link', help='Install the agent into ~/Library/LaunchAgents via symlink')
+    link_p.add_argument('path', type=str, help='The path to the launch agent to be linked.')
+
+    copy_p = subp.add_parser('copy', help='Install the agent into ~/Library/LaunchAgents via copy')
+    copy_p.add_argument('path', type=str, help='The path to the launch agent to be copied.')
+
+    args = vars(parser.parse_args())
+    p = Plunchy(**args)
+    p.execute()
+
