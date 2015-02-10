@@ -12,7 +12,7 @@ try:
 except ImportError:
     pygments = None
 
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 PLUNCHY_FILE = os.path.expanduser('~/.plunchy')
 DIRS = ['~/Library/LaunchAgents']
 ROOT_DIRS = [
